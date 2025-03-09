@@ -108,7 +108,7 @@
 
         // Fetch and cache data
         function loadData() {
-            const cachedData = localStorage.getItem('postOfficeData');
+            const cachedData = localStorage.getItem('postOfficeData1');
             if (cachedData) {
                 data = JSON.parse(cachedData);
                 populateTable();
@@ -116,7 +116,7 @@
                 fetch('data1.json')
                     .then(response => response.json())
                     .then(fetchedData => {
-                        localStorage.setItem('postOfficeData', JSON.stringify(fetchedData));
+                        localStorage.setItem('postOfficeData1', JSON.stringify(fetchedData));
                         data = fetchedData;
                         populateTable();
                     })

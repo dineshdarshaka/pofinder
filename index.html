@@ -114,7 +114,7 @@
                 populateTable();
             } else {
                 // Append a unique query parameter to the JSON URL
-                fetch(`data.json?timestamp=${new Date().getTime()}`)
+                fetch(`data1.json?timestamp=${new Date().getTime()}`)
                     .then(response => response.json())
                     .then(fetchedData => {
                         localStorage.setItem('postOfficeData', JSON.stringify(fetchedData));

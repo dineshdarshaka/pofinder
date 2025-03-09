@@ -1,4 +1,4 @@
 [[headers]]
   for = "/data.json"
   [headers.values]
-    Cache-Control = "max-age=86400, must-revalidate"
+    Cache-Control = "max-age=10, must-revalidate"

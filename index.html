@@ -8,7 +8,7 @@
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding-top: 80px; /* Space for fixed search box */
+            padding-top: 80px;
         }
         #notification {
             background-color: #f8d7da;
@@ -25,24 +25,23 @@
             border: 1px solid #ddd;
             border-radius: 5px;
             box-sizing: border-box;
-            position: fixed; /* Fixed position */
-            top: 0; /* Stick to the top */
+            position: fixed;
+            top: 0;
             left: 0;
-            z-index: 1000; /* Ensure it stays on top */
-            background-color: white; /* Match background */
+            z-index: 1000;
+            background-color: white;
         }
         table {
             width: 100%;
             border-collapse: collapse;
-            table-layout: auto; /* Dynamic column widths */
-            margin-top: 20px; /* Space below fixed search box */
+            margin-top: 20px;
         }
         th, td {
             border: 1px solid #ddd;
             padding: 8px;
             text-align: left;
-            word-wrap: break-word; /* Break long words */
-            white-space: normal; /* Allow text wrapping */
+            word-wrap: break-word;
+            white-space: normal;
         }
         th {
             background-color: #f2f2f2;
@@ -57,10 +56,10 @@
             cursor: pointer;
         }
         .highlight {
-            background-color: #ffff99; /* Highlight color for clicked row */
+            background-color: #ffff99;
         }
         #backButton {
-            display: none; /* Hidden by default */
+            display: none;
             margin-top: 20px;
             padding: 10px 20px;
             font-size: 16px;
@@ -69,15 +68,14 @@
     </style>
 </head>
 <body>
-    <!-- Search Box -->
+
     <input type="text" id="searchBox" placeholder="Search by Office Name...">
 
-    <!-- Notification -->
     <div id="notification">
-        Please send an email to <a href="mailto:ddarshaka1@gmail.com">ddarshaka1@gmail.com</a> for information correction.To see more details about SPO, click on the post office name.
+        Please send an email to <a href="mailto:ddarshaka1@gmail.com">ddarshaka1@gmail.com</a> for information correction.
+        To see more details about SPO, click on the post office name.
     </div>
 
-    <!-- Main Table -->
     <table id="postOfficeTable">
         <thead>
             <tr>
@@ -90,12 +88,9 @@
                 <th>DPMG Area</th>
             </tr>
         </thead>
-        <tbody>
-            <!-- Data will be populated here by JavaScript -->
-        </tbody>
+        <tbody></tbody>
     </table>
 
-    <!-- Back Button -->
     <button id="backButton">Back to Full List</button>
 
     <script>
@@ -103,10 +98,10 @@
         const tableBody = document.querySelector('#postOfficeTable tbody');
         const searchBox = document.getElementById('searchBox');
         const backButton = document.getElementById('backButton');
+        let clickedRow = null;
         let debounceTimer;
-        let clickedRow = null; // Track the clicked row
 
-        // Fetch and cache data
+        // Load data from cache or fetch
         function loadData() {
             const cachedData = localStorage.getItem('postOfficeData3');
             if (cachedData) {
@@ -124,9 +119,11 @@
             }
         }
 
-        // Populate table with filtering
+        // Efficiently populate the table
         function populateTable(filterText = '') {
-            tableBody.innerHTML = ''; // Clear existing rows
+            tableBody.innerHTML = '';
+            const fragment = document.createDocumentFragment();
+
             data.Main.forEach(office => {
                 const officeName = office['Office Name'] || '';
                 if (officeName.toLowerCase().includes(filterText.toLowerCase())) {
@@ -140,31 +137,34 @@
                         <td>${office.DS || 'N/A'}</td>
                         <td>${office.DPMG || 'N/A'}</td>
                     `;
-                    tableBody.appendChild(row);
 
-                    // Add click event to the office name
                     const clickableOfficeName = row.querySelector('.clickable');
                     clickableOfficeName.addEventListener('click', () => {
-                        if (clickedRow) {
-                            clickedRow.classList.remove('highlight'); // Remove highlight from previous row
-                        }
-                        row.classList.add('highlight'); // Highlight the clicked row
-                        clickedRow = row; // Track the clicked row
+                        if (clickedRow) clickedRow.classList.remove('highlight');
+                        row.classList.add('highlight');
+                        clickedRow = row;
                         filterByControllingOffice(officeName);
                     });
+
+                    fragment.appendChild(row);
                 }
             });
+
+            tableBody.appendChild(fragment);
         }
 
-        // Filter table by Controlling Office
+        // Filter by Controlling Office
         function filterByControllingOffice(officeName) {
-            tableBody.innerHTML = ''; // Clear existing rows
+            tableBody.innerHTML = '';
+            const fragment = document.createDocumentFragment();
+
             data.Main.forEach(office => {
                 const controllingOffice = office['controlling Office'] || '';
                 const officeNameMatch = office['Office Name'] || '';
+
                 if (
-                    controllingOffice.toLowerCase() === officeName.toLowerCase() || // Match Controlling Office
-                    officeNameMatch.toLowerCase() === officeName.toLowerCase() // Include the clicked row
+                    controllingOffice.toLowerCase() === officeName.toLowerCase() ||
+                    officeNameMatch.toLowerCase() === officeName.toLowerCase()
                 ) {
                     const row = document.createElement('tr');
                     row.innerHTML = `
@@ -176,27 +176,29 @@
                         <td>${office.DS || 'N/A'}</td>
                         <td>${office.DPMG || 'N/A'}</td>
                     `;
-                    tableBody.appendChild(row);
 
-                    // Highlight the clicked row
                     if (officeNameMatch.toLowerCase() === officeName.toLowerCase()) {
                         row.classList.add('highlight');
                     }
+
+                    fragment.appendChild(row);
                 }
             });
 
-            // Show the Back Button
-            backButton.style.display = 'block';
+            tableBody.appendChild(fragment);
+            requestAnimationFrame(() => { backButton.style.display = 'block'; });
         }
 
-        // Back Button Functionality
+        // Back button functionality
         backButton.addEventListener('click', () => {
-            populateTable(); // Show the full table
-            backButton.style.display = 'none'; // Hide the Back Button
-            if (clickedRow) {
-                clickedRow.classList.remove('highlight'); // Remove highlight
-                clickedRow = null; // Reset clicked row
-            }
+            requestAnimationFrame(() => {
+                populateTable();
+                backButton.style.display = 'none';
+                if (clickedRow) {
+                    clickedRow.classList.remove('highlight');
+                    clickedRow = null;
+                }
+            });
         });
 
         // Debounced search
@@ -205,11 +207,12 @@
             debounceTimer = setTimeout(() => {
                 const filterText = event.target.value.trim();
                 populateTable(filterText);
-            }, 300); // Adjust delay as needed
+            }, 200);
         });
 
         // Load data on page load
         loadData();
     </script>
+
 </body>
 </html>

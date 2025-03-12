@@ -8,7 +8,7 @@
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding-top: 80px;
+            padding-top: 100px;
         }
         #notification {
             background-color: #f8d7da;
@@ -18,18 +18,35 @@
             border-radius: 5px;
             margin-bottom: 20px;
         }
-        #searchBox {
-            width: 100%;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            box-sizing: border-box;
+        #searchContainer {
             position: fixed;
             top: 0;
             left: 0;
-            z-index: 1000;
+            width: 100%;
             background-color: white;
+            padding: 10px;
+            z-index: 1000;
+            text-align: center;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        #searchBox {
+            width: 60%;
+            padding: 12px;
+            font-size: 18px;
+            border: 2px solid #007bff;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        #clearButton {
+            padding: 12px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 5px;
         }
         table {
             width: 100%;
@@ -69,7 +86,10 @@
 </head>
 <body>
 
-    <input type="text" id="searchBox" placeholder="Search by Office Name , short code or postal code ...">
+    <div id="searchContainer">
+        <input type="text" id="searchBox" placeholder="Search by Office Name, Short Code, or Postal Code...">
+        <button id="clearButton">Clear</button>
+    </div>
 
     <div id="notification">
         Please send an email to <a href="mailto:ddarshaka1@gmail.com">ddarshaka1@gmail.com</a> for information correction.
@@ -79,11 +99,11 @@
     <table id="postOfficeTable">
         <thead>
             <tr>
-                <th>Post Office Name</th>
+                <th>Post Office and Sub Post Office Name</th>
                 <th>Controlling Office</th>
                 <th>Telephone Number</th>
-                <th>Number of SPO</th>
                 <th>Delivery/Non-Delivery</th>
+                <th>Number of SPO</th>
                 <th>DS Area</th>
                 <th>DPMG Area</th>
             </tr>
@@ -97,21 +117,22 @@
         let data = [];
         const tableBody = document.querySelector('#postOfficeTable tbody');
         const searchBox = document.getElementById('searchBox');
+        const clearButton = document.getElementById('clearButton');
         const backButton = document.getElementById('backButton');
         let clickedRow = null;
         let debounceTimer;
 
         // Load data from cache or fetch
         function loadData() {
-            const cachedData = localStorage.getItem('postOfficeData4');
+            const cachedData = localStorage.getItem('postOfficeData3');
             if (cachedData) {
                 data = JSON.parse(cachedData);
                 populateTable();
             } else {
-                fetch('data4.json')
+                fetch('data3.json')
                     .then(response => response.json())
                     .then(fetchedData => {
-                        localStorage.setItem('postOfficeData4', JSON.stringify(fetchedData));
+                        localStorage.setItem('postOfficeData3', JSON.stringify(fetchedData));
                         data = fetchedData;
                         populateTable();
                     })
@@ -119,7 +140,7 @@
             }
         }
 
-        // Efficiently populate the table
+        // Populate table
         function populateTable(filterText = '') {
             tableBody.innerHTML = '';
             const fragment = document.createDocumentFragment();
@@ -132,8 +153,8 @@
                         <td><span class="clickable">${officeName}</span></td>
                         <td>${office['controlling Office'] === 0 ? 'Post Office' : office['controlling Office'] || 'N/A'}</td>
                         <td>${office['Te. No'] || 'N/A'}</td>
-                        <td>${office['Number of SPO'] || 'N/A'}</td>
                         <td>${office['Delivery / Non Delivery'] || 'N/A'}</td>
+                        <td>${office['Number of SPO'] || 'N/A'}</td>
                         <td>${office.DS || 'N/A'}</td>
                         <td>${office.DPMG || 'N/A'}</td>
                     `;
@@ -171,8 +192,8 @@
                         <td>${office['Office Name'] || 'N/A'}</td>
                         <td>${office['controlling Office'] === 0 ? 'Post Office' : office['controlling Office'] || 'N/A'}</td>
                         <td>${office['Te. No'] || 'N/A'}</td>
-                        <td>${office['Number of SPO'] || 'N/A'}</td>
                         <td>${office['Delivery / Non Delivery'] || 'N/A'}</td>
+                        <td>${office['Number of SPO'] || 'N/A'}</td>
                         <td>${office.DS || 'N/A'}</td>
                         <td>${office.DPMG || 'N/A'}</td>
                     `;
@@ -205,9 +226,14 @@
         searchBox.addEventListener('input', (event) => {
             clearTimeout(debounceTimer);
             debounceTimer = setTimeout(() => {
-                const filterText = event.target.value.trim();
-                populateTable(filterText);
+                populateTable(event.target.value.trim());
             }, 200);
+        });
+
+        // Clear button functionality
+        clearButton.addEventListener('click', () => {
+            searchBox.value = '';
+            populateTable();
         });
 
         // Load data on page load

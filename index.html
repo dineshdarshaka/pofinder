@@ -18,6 +18,23 @@
             border-radius: 5px;
             margin-bottom: 20px;
         }
+        #errorMessage {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border: 1px solid #f5c6cb;
+            border-radius: 5px;
+            margin: 20px;
+            display: none;
+            text-align: center;
+            font-weight: bold;
+        }
+        #loadingIndicator {
+            text-align: center;
+            margin: 20px;
+            font-size: 18px;
+            display: none;
+        }
         #searchContainer {
             position: fixed;
             top: 0;
@@ -77,10 +94,14 @@
         }
         #backButton {
             display: none;
-            margin-top: 20px;
+            margin: 20px auto;
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
         }
     </style>
 </head>
@@ -95,6 +116,9 @@
         Please send an email to <a href="mailto:ddarshaka1@gmail.com">ddarshaka1@gmail.com</a> for information correction.
         To see more details about SPO, click on the post office name.
     </div>
+
+    <div id="loadingIndicator">Loading data, please wait...</div>
+    <div id="errorMessage">Failed to load data. Please check if the data8.json file exists in the correct location and refresh the page.</div>
 
     <table id="postOfficeTable">
         <thead>
@@ -119,25 +143,59 @@
         const searchBox = document.getElementById('searchBox');
         const clearButton = document.getElementById('clearButton');
         const backButton = document.getElementById('backButton');
+        const errorMessage = document.getElementById('errorMessage');
+        const loadingIndicator = document.getElementById('loadingIndicator');
         let clickedRow = null;
         let debounceTimer;
 
         // Load data from cache or fetch
         function loadData() {
+            loadingIndicator.style.display = 'block';
+            
             const cachedData = localStorage.getItem('postOfficeData8');
             if (cachedData) {
-                data = JSON.parse(cachedData);
-                populateTable();
+                try {
+                    data = JSON.parse(cachedData);
+                    if (data && data.Main && Array.isArray(data.Main)) {
+                        populateTable();
+                        loadingIndicator.style.display = 'none';
+                    } else {
+                        throw new Error('Invalid data format');
+                    }
+                } catch (error) {
+                    console.error('Error parsing cached data:', error);
+                    localStorage.removeItem('postOfficeData8'); // Clear invalid cache
+                    fetchDataFromFile();
+                }
             } else {
-                fetch('data8.json')
-                    .then(response => response.json())
-                    .then(fetchedData => {
+                fetchDataFromFile();
+            }
+        }
+
+        function fetchDataFromFile() {
+            fetch('data8.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(fetchedData => {
+                    if (fetchedData && fetchedData.Main && Array.isArray(fetchedData.Main)) {
                         localStorage.setItem('postOfficeData8', JSON.stringify(fetchedData));
                         data = fetchedData;
                         populateTable();
-                    })
-                    .catch(error => console.error('Error fetching JSON:', error));
-            }
+                        loadingIndicator.style.display = 'none';
+                    } else {
+                        throw new Error('Invalid data format in JSON file');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching JSON:', error);
+                    loadingIndicator.style.display = 'none';
+                    errorMessage.style.display = 'block';
+                    document.getElementById('postOfficeTable').style.display = 'none';
+                });
         }
 
         // Populate table
@@ -207,19 +265,17 @@
             });
 
             tableBody.appendChild(fragment);
-            requestAnimationFrame(() => { backButton.style.display = 'block'; });
+            backButton.style.display = 'block';
         }
 
         // Back button functionality
         backButton.addEventListener('click', () => {
-            requestAnimationFrame(() => {
-                populateTable();
-                backButton.style.display = 'none';
-                if (clickedRow) {
-                    clickedRow.classList.remove('highlight');
-                    clickedRow = null;
-                }
-            });
+            populateTable();
+            backButton.style.display = 'none';
+            if (clickedRow) {
+                clickedRow.classList.remove('highlight');
+                clickedRow = null;
+            }
         });
 
         // Debounced search

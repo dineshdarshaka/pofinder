@@ -152,7 +152,7 @@
         function loadData() {
             loadingIndicator.style.display = 'block';
             
-            const cachedData = localStorage.getItem('postOfficeData8');
+            const cachedData = localStorage.getItem('postOfficeData9');
             if (cachedData) {
                 try {
                     data = JSON.parse(cachedData);
@@ -164,7 +164,7 @@
                     }
                 } catch (error) {
                     console.error('Error parsing cached data:', error);
-                    localStorage.removeItem('postOfficeData8'); // Clear invalid cache
+                    localStorage.removeItem('postOfficeData9'); // Clear invalid cache
                     fetchDataFromFile();
                 }
             } else {
@@ -173,7 +173,7 @@
         }
 
         function fetchDataFromFile() {
-            fetch('data8.json')
+            fetch('data9.json')
                 .then(response => {
                     if (!response.ok) {
                         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -182,7 +182,7 @@
                 })
                 .then(fetchedData => {
                     if (fetchedData && fetchedData.Main && Array.isArray(fetchedData.Main)) {
-                        localStorage.setItem('postOfficeData8', JSON.stringify(fetchedData));
+                        localStorage.setItem('postOfficeData9', JSON.stringify(fetchedData));
                         data = fetchedData;
                         populateTable();
                         loadingIndicator.style.display = 'none';

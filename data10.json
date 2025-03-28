@@ -1,7 +1,7 @@
 {
 "Main":[
  {
-  "Office Name": "1Aturugiriya ( ATG )  ( 10150 ) ",
+  "Office Name": "Aturugiriya ( ATG )  ( 10150 ) ",
   "controlling Office": "-",
   "DS": "CO(N)",
   "DPMG": "WP",
@@ -5313,7 +5313,7 @@
   "DS": "JA",
   "DPMG": "NP",
   "PO Code": "40020",
-  "Delivery \/ Non Delivery": "Delivery",
+  "Delivery \/ Non Delivery": "Non Delivery",
   "Te. No": "0212222550"
  },
  {
@@ -5327,7 +5327,7 @@
   "Number of SPO": 10
  },
  {
-  "Office Name": "Erlalai ,  ( 40080 ) ",
+  "Office Name": "Erlalai  ( 40080 ) ",
   "controlling Office": "Chunnakam ( CK )  ( 40075 ) ",
   "DS": "JA",
   "DPMG": "NP",
@@ -5341,7 +5341,7 @@
   "DS": "JA",
   "DPMG": "NP",
   "PO Code": "40077",
-  "Delivery \/ Non Delivery": "Delivery",
+  "Delivery \/ Non Delivery": "Non Delivery",
   "Te. No": "0779789483"
  },
  {
@@ -5359,7 +5359,7 @@
   "DS": "JA",
   "DPMG": "NP",
   "PO Code": "40091",
-  "Delivery \/ Non Delivery": "Delivery",
+  "Delivery \/ Non Delivery": "Non Delivery",
   "Te. No": "0212240250"
  },
  {
@@ -5368,7 +5368,7 @@
   "DS": "JA",
   "DPMG": "NP",
   "PO Code": "40083",
-  "Delivery \/ Non Delivery": "Delivery",
+  "Delivery \/ Non Delivery": "Non Delivery",
   "Te. No": "0772028696"
  },
  {
@@ -5386,7 +5386,7 @@
   "DS": "JA",
   "DPMG": "NP",
   "PO Code": "40085",
-  "Delivery \/ Non Delivery": "Delivery"
+  "Delivery \/ Non Delivery": "Non Delivery"
  },
  {
   "Office Name": "Punnalaikadduwan ( 40087 ) ",
@@ -5394,7 +5394,7 @@
   "DS": "JA",
   "DPMG": "NP",
   "PO Code": "40087",
-  "Delivery \/ Non Delivery": "Delivery",
+  "Delivery \/ Non Delivery": "Non Delivery",
   "Te. No": "0213207758"
  },
  {
@@ -5403,7 +5403,7 @@
   "DS": "JA",
   "DPMG": "NP",
   "PO Code": "40093",
-  "Delivery \/ Non Delivery": "Delivery",
+  "Delivery \/ Non Delivery": "Non Delivery",
   "Te. No": "0779352781"
  },
  {
@@ -5412,7 +5412,7 @@
   "DS": "JA",
   "DPMG": "NP",
   "PO Code": "40089",
-  "Delivery \/ Non Delivery": "Delivery",
+  "Delivery \/ Non Delivery": "Non Delivery",
   "Te. No": "0212241840"
  },
  {
@@ -5431,7 +5431,7 @@
   "DS": "JA",
   "DPMG": "NP",
   "PO Code": "40375",
-  "Delivery \/ Non Delivery": "Delivery"
+  "Delivery \/ Non Delivery": "Non Delivery"
  },
  {
   "Office Name": "Delft West  ( 40378 ) ",
@@ -5467,7 +5467,7 @@
   "DS": "JA",
   "DPMG": "NP",
   "PO Code": "40198",
-  "Delivery \/ Non Delivery": "Delivery",
+  "Delivery \/ Non Delivery": "Non Delivery",
   "Te. No": "0212222610 - 0212255610"
  },
  {
@@ -5476,7 +5476,7 @@
   "DS": "JA",
   "DPMG": "NP",
   "PO Code": "40007",
-  "Delivery \/ Non Delivery": "Delivery",
+  "Delivery \/ Non Delivery": "Non Delivery",
   "Te. No": "0212222251"
  },
  {
@@ -5485,7 +5485,7 @@
   "DS": "JA",
   "DPMG": "NP",
   "PO Code": "40035",
-  "Delivery \/ Non Delivery": "Delivery",
+  "Delivery \/ Non Delivery": "Non Delivery",
   "Te. No": "0212215258 - 0213211567"
  },
  {
@@ -5494,7 +5494,7 @@
   "DS": "JA",
   "DPMG": "NP",
   "PO Code": "40005",
-  "Delivery \/ Non Delivery": "Delivery",
+  "Delivery \/ Non Delivery": "Non Delivery",
   "Te. No": "0212222987"
  },
  {
@@ -5503,7 +5503,7 @@
   "DS": "JA",
   "DPMG": "NP",
   "PO Code": "40033",
-  "Delivery \/ Non Delivery": "Delivery"
+  "Delivery \/ Non Delivery": "Non Delivery"
  },
  {
   "Office Name": "Eachchamoddai ( 40029 ) ",
@@ -5511,7 +5511,7 @@
   "DS": "JA",
   "DPMG": "NP",
   "PO Code": "40029",
-  "Delivery \/ Non Delivery": "Delivery",
+  "Delivery \/ Non Delivery": "Non Delivery",
   "Te. No": "0212212730 - 0773840169"
  },
  {
@@ -5520,7 +5520,7 @@
   "DS": "JA",
   "DPMG": "NP",
   "PO Code": "40027",
-  "Delivery \/ Non Delivery": "Delivery",
+  "Delivery \/ Non Delivery": "Non Delivery",
   "Te. No": "0212215056 - 0213211564"
  },
  {
@@ -5529,7 +5529,7 @@
   "DS": "JA",
   "DPMG": "NP",
   "PO Code": "40023",
-  "Delivery \/ Non Delivery": "Delivery",
+  "Delivery \/ Non Delivery": "Non Delivery",
   "Te. No": "0212223737"
  },
  {
@@ -5538,7 +5538,7 @@
   "DS": "JA",
   "DPMG": "NP",
   "PO Code": "40003",
-  "Delivery \/ Non Delivery": "Delivery",
+  "Delivery \/ Non Delivery": "Non Delivery",
   "Te. No": "0212222477"
  },
  {
@@ -5547,7 +5547,7 @@
   "DS": "JA",
   "DPMG": "NP",
   "PO Code": "40017",
-  "Delivery \/ Non Delivery": "Delivery",
+  "Delivery \/ Non Delivery": "Non Delivery",
   "Te. No": "0212227247"
  },
  {
@@ -5556,7 +5556,7 @@
   "DS": "JA",
   "DPMG": "NP",
   "PO Code": "40025",
-  "Delivery \/ Non Delivery": "Delivery",
+  "Delivery \/ Non Delivery": "Non Delivery",
   "Te. No": "0212228787 - 0712552398"
  },
  {
@@ -5574,7 +5574,7 @@
   "DS": "JA",
   "DPMG": "NP",
   "PO Code": "40037",
-  "Delivery \/ Non Delivery": "Delivery",
+  "Delivery \/ Non Delivery": "Non Delivery",
   "Te. No": "0776935617"
  },
  {
@@ -5583,7 +5583,7 @@
   "DS": "JA",
   "DPMG": "NP",
   "PO Code": "40041",
-  "Delivery \/ Non Delivery": "Delivery"
+  "Delivery \/ Non Delivery": "Non Delivery"
  },
  {
   "Office Name": "Nallur ( 40011 ) ",
@@ -5591,7 +5591,7 @@
   "DS": "JA",
   "DPMG": "NP",
   "PO Code": "40011",
-  "Delivery \/ Non Delivery": "Delivery",
+  "Delivery \/ Non Delivery": "Non Delivery",
   "Te. No": "0212227243"
  },
  {
@@ -5600,7 +5600,7 @@
   "DS": "JA",
   "DPMG": "NP",
   "PO Code": "40009",
-  "Delivery \/ Non Delivery": "Delivery",
+  "Delivery \/ Non Delivery": "Non Delivery",
   "Te. No": "0212222252"
  },
  {
@@ -5609,7 +5609,7 @@
   "DS": "JA",
   "DPMG": "NP",
   "PO Code": "40038",
-  "Delivery \/ Non Delivery": "Delivery",
+  "Delivery \/ Non Delivery": "Non Delivery",
   "Te. No": "0212223413"
  },
  {
@@ -5618,7 +5618,7 @@
   "DS": "JA",
   "DPMG": "NP",
   "PO Code": "40165",
-  "Delivery \/ Non Delivery": "Delivery",
+  "Delivery \/ Non Delivery": "Non Delivery",
   "Te. No": "0212222285"
  },
  {
@@ -5627,7 +5627,7 @@
   "DS": "JA",
   "DPMG": "NP",
   "PO Code": "40031",
-  "Delivery \/ Non Delivery": "Delivery",
+  "Delivery \/ Non Delivery": "Non Delivery",
   "Te. No": "0213219268"
  },
  {
@@ -5636,7 +5636,7 @@
   "DS": "JA",
   "DPMG": "NP",
   "PO Code": "40039",
-  "Delivery \/ Non Delivery": "Delivery",
+  "Delivery \/ Non Delivery": "Non Delivery",
   "Te. No": "0212222600"
  },
  {
@@ -5654,7 +5654,7 @@
   "DS": "JA",
   "DPMG": "NP",
   "PO Code": "40015",
-  "Delivery \/ Non Delivery": "Delivery"
+  "Delivery \/ Non Delivery": "Non Delivery"
  },
  {
   "Office Name": "Tirunelveli Junction  ( 40013 ) ",
@@ -5662,7 +5662,7 @@
   "DS": "JA",
   "DPMG": "NP",
   "PO Code": "40013",
-  "Delivery \/ Non Delivery": "Delivery",
+  "Delivery \/ Non Delivery": "Non Delivery",
   "Te. No": "0212222265"
  },
  {
@@ -12247,7 +12247,7 @@
   "Te. No": "0912222182"
  },
  {
-  "Office Name": "YakgahaÃ‚Â  Junction (  ) ",
+  "Office Name": "YakgahaÃƒâ€šÃ‚Â  Junction (  ) ",
   "controlling Office": "Galle ( GL )  ( 80000 ) ",
   "DS": "GL",
   "DPMG": "SP",
@@ -12255,7 +12255,7 @@
   "Te. No": "0912222184"
  },
  {
-  "Office Name": "GalleÃ‚Â  District Secretariat ( GLS )  (  ) ",
+  "Office Name": "GalleÃƒâ€šÃ‚Â  District Secretariat ( GLS )  (  ) ",
   "controlling Office": "-",
   "DS": "GL",
   "DPMG": "SP",
@@ -14885,7 +14885,7 @@
   "Te. No": "0415624209 - 0602419277"
  },
  {
-  "Office Name": "PahalaÃ‚Â  Keeripitiya (  ) ",
+  "Office Name": "PahalaÃƒâ€šÃ‚Â  Keeripitiya (  ) ",
   "controlling Office": "Urubokka ( UB )  ( 81600 ) ",
   "DS": "MH",
   "DPMG": "SP",

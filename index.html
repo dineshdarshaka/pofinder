@@ -225,11 +225,17 @@
         }
 
         // Populate table
-        function populateTable(filterText = '') {
+        function populateTable(filteredData = null) {
+            const tableBody = document.getElementById('tableBody');
             tableBody.innerHTML = '';
-            const fragment = document.createDocumentFragment();
+            
+            const dataToUse = filteredData || data.Main;
+            
+            // Show/hide update button based on whether we're showing filtered data
+            const updateButton = document.getElementById('updateButton');
+            updateButton.style.display = filteredData ? 'none' : 'block';
 
-            data.Main.forEach(office => {
+            dataToUse.forEach(item => {
                 const officeName = office['Office Name'] || '';
                 if (officeName.toLowerCase().includes(filterText.toLowerCase())) {
                     const row = document.createElement('tr');

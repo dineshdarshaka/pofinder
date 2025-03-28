@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Office Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding-top: 100px;
+        }
+        #notification {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            border: 1px solid #f5c6cb;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        #errorMessage {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border: 1px solid #f5c6cb;
+            border-radius: 5px;
+            margin: 20px;
+            display: none;
+            text-align: center;
+            font-weight: bold;
+        }
+        #loadingIndicator {
+            text-align: center;
+            margin: 20px;
+            font-size: 18px;
+            display: none;
+        }
+        #searchContainer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            padding: 10px;
+            z-index: 1000;
+            text-align: center;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        #searchBox {
+            width: 60%;
+            padding: 12px;
+            font-size: 18px;
+            border: 2px solid #007bff;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        #clearButton {
+            padding: 12px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+            word-wrap: break-word;
+            white-space: normal;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .clickable {
+            color: blue;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        .highlight {
+            background-color: #ffff99;
+        }
+        #backButton {
+            display: none;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        #updateButton {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="searchContainer">
+        <input type="text" id="searchBox" placeholder="Search by Office Name, Short Code or Postal Code...">
+        <button id="clearButton">Clear</button>
+    </div>
+
+    <div id="notification">
+        Please send an email to <a href="mailto:ddarshaka1@gmail.com">ddarshaka1@gmail.com</a> for information correction.
+        To see more details about SPO, click on the post office name.
+    </div>
+
+    <div id="loadingIndicator">Loading data, please wait...</div>
+    <div id="errorMessage">Failed to load data. Please check if the data8.json file exists in the correct location and refresh the page.</div>
+
+    <table id="postOfficeTable">
+        <thead>
+            <tr>
+                <th>Post Office and Sub Post Office Name</th>
+                <th>Controlling Office</th>
+                <th>Telephone Number</th>
+                <th>Delivery/Non-Delivery</th>
+                <th>Number of SPO</th>
+                <th>DS Area</th>
+                <th>DPMG Area</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <button id="backButton">Back to Full List</button>
+    <button id="updateButton">Update Data</button>
+
+    <script>
+        let data = [];
+        const tableBody = document.querySelector('#postOfficeTable tbody');
+        const searchBox = document.getElementById('searchBox');
+        const clearButton = document.getElementById('clearButton');
+        const backButton = document.getElementById('backButton');
+        const errorMessage = document.getElementById('errorMessage');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        let clickedRow = null;
+        let debounceTimer;
+
+        // Load data from cache or fetch
+        function loadData() {
+            loadingIndicator.style.display = 'block';
+            
+            const lastFetchTime = localStorage.getItem('lastFetchTime');
+            const currentTime = new Date().getTime();
+            const twentyFourHours = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+
+            // Check if 24 hours have passed since last fetch
+            if (!lastFetchTime || (currentTime - parseInt(lastFetchTime)) > twentyFourHours) {
+                // Clear cache and fetch fresh data
+                localStorage.removeItem('postOfficedata10');
+                localStorage.setItem('lastFetchTime', currentTime);
+                fetchDataFromFile();
+            } else {
+                // Use cached data if available and within 24 hours
+                const cachedData = localStorage.getItem('postOfficedata10');
+                if (cachedData) {
+                    try {
+                        data = JSON.parse(cachedData);
+                        if (data && data.Main && Array.isArray(data.Main)) {
+                            populateTable();
+                            loadingIndicator.style.display = 'none';
+                        } else {
+                            throw new Error('Invalid data format');
+                        }
+                    } catch (error) {
+                        console.error('Error parsing cached data:', error);
+                        localStorage.removeItem('postOfficedata10');
+                        fetchDataFromFile();
+                    }
+                } else {
+                    fetchDataFromFile();
+                }
+            }
+        }
+
+        function fetchDataFromFile() {
+            // Add cache busting query parameter
+            fetch('data10.json?' + new Date().getTime())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(fetchedData => {
+                    if (fetchedData && fetchedData.Main && Array.isArray(fetchedData.Main)) {
+                        localStorage.setItem('postOfficedata10', JSON.stringify(fetchedData));
+                        data = fetchedData;
+                        populateTable();
+                        loadingIndicator.style.display = 'none';
+                    } else {
+                        throw new Error('Invalid data format in JSON file');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching JSON:', error);
+                    loadingIndicator.style.display = 'none';
+                    errorMessage.style.display = 'block';
+                    document.getElementById('postOfficeTable').style.display = 'none';
+                });
+        }
+
+        // Populate table
+        function populateTable(filterText = '') {
+            tableBody.innerHTML = '';
+            const fragment = document.createDocumentFragment();
+
+            data.Main.forEach(office => {
+                const officeName = office['Office Name'] || '';
+                if (officeName.toLowerCase().includes(filterText.toLowerCase())) {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td><span class="clickable">${officeName}</span></td>
+                        <td>${office['controlling Office'] === 0 ? 'Post Office' : office['controlling Office'] || 'N/A'}</td>
+                        <td>${office['Te. No'] || 'N/A'}</td>
+                        <td>${office['Delivery / Non Delivery'] || 'N/A'}</td>
+                        <td>${office['Number of SPO'] || 'N/A'}</td>
+                        <td>${office.DS || 'N/A'}</td>
+                        <td>${office.DPMG || 'N/A'}</td>
+                    `;
+
+                    const clickableOfficeName = row.querySelector('.clickable');
+                    clickableOfficeName.addEventListener('click', () => {
+                        if (clickedRow) clickedRow.classList.remove('highlight');
+                        row.classList.add('highlight');
+                        clickedRow = row;
+                        filterByControllingOffice(officeName);
+                    });
+
+                    fragment.appendChild(row);
+                }
+            });
+
+            tableBody.appendChild(fragment);
+        }
+
+        // Filter by Controlling Office
+        function filterByControllingOffice(officeName) {
+            tableBody.innerHTML = '';
+            const fragment = document.createDocumentFragment();
+
+            data.Main.forEach(office => {
+                const controllingOffice = office['controlling Office'] || '';
+                const officeNameMatch = office['Office Name'] || '';
+
+                if (
+                    controllingOffice.toLowerCase() === officeName.toLowerCase() ||
+                    officeNameMatch.toLowerCase() === officeName.toLowerCase()
+                ) {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${office['Office Name'] || 'N/A'}</td>
+                        <td>${office['controlling Office'] === 0 ? 'Post Office' : office['controlling Office'] || 'N/A'}</td>
+                        <td>${office['Te. No'] || 'N/A'}</td>
+                        <td>${office['Delivery / Non Delivery'] || 'N/A'}</td>
+                        <td>${office['Number of SPO'] || 'N/A'}</td>
+                        <td>${office.DS || 'N/A'}</td>
+                        <td>${office.DPMG || 'N/A'}</td>
+                    `;
+
+                    if (officeNameMatch.toLowerCase() === officeName.toLowerCase()) {
+                        row.classList.add('highlight');
+                    }
+
+                    fragment.appendChild(row);
+                }
+            });
+
+            tableBody.appendChild(fragment);
+            backButton.style.display = 'block';
+        }
+
+        // Back button functionality
+        backButton.addEventListener('click', () => {
+            populateTable();
+            backButton.style.display = 'none';
+            if (clickedRow) {
+                clickedRow.classList.remove('highlight');
+                clickedRow = null;
+            }
+        });
+
+        // Debounced search
+        searchBox.addEventListener('input', (event) => {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => {
+                populateTable(event.target.value.trim());
+            }, 200);
+        });
+
+        // Clear button functionality
+        clearButton.addEventListener('click', () => {
+            searchBox.value = '';
+            populateTable();
+        });
+
+        // Update button functionality
+        const updateButton = document.getElementById('updateButton');
+        updateButton.addEventListener('click', () => {
+            localStorage.removeItem('postOfficedata10');
+            localStorage.removeItem('lastFetchTime');
+            loadData();
+        });
+
+        // Load data on page load
+        loadData();
+    </script>
+
+</body>
+</html>

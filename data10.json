@@ -9199,7 +9199,7 @@
   "DPMG": "Sabara",
   "PO Code": "70100",
   "Delivery \/ Non Delivery": "Delivery",
-  "Te. No": "0452287250 - 0452288050 - 0452287350 - 0452287253 - 0452287251 - 0454921132",
+  "Te. No": "0452287250 - 0452287350 - 0452287253",
   "Number of SPO": 27
  },
  {
@@ -28762,7 +28762,7 @@
  },
  {
   "Office Name": "Ambewela ( 22216 ) ",
-  "controlling Office": 0,
+  "controlling Office": "NuwaraEliya ( NW )  ( 22200 ) ",
   "DS": "NW",
   "DPMG": "CP",
   "PO Code": "22216",
@@ -28771,7 +28771,7 @@
  },
  {
   "Office Name": "Gaminipura (  ) ",
-  "controlling Office": 0,
+  "controlling Office": "NuwaraEliya ( NW )  ( 22200 ) ",
   "DS": "NW",
   "DPMG": "CP",
   "Delivery \/ Non Delivery": "Non Delivery",
@@ -28779,7 +28779,7 @@
  },
  {
   "Office Name": "Hakgala ( 22208 ) ",
-  "controlling Office": 0,
+  "controlling Office": "NuwaraEliya ( NW )  ( 22200 ) ",
   "DS": "NW",
   "DPMG": "CP",
   "PO Code": "22208",
@@ -28788,7 +28788,7 @@
  },
  {
   "Office Name": "Hawaeliya (  ) ",
-  "controlling Office": 0,
+  "controlling Office": "NuwaraEliya ( NW )  ( 22200 ) ",
   "DS": "NW",
   "DPMG": "CP",
   "Delivery \/ Non Delivery": "Non Delivery",
@@ -28796,7 +28796,7 @@
  },
  {
   "Office Name": "Kalukele (  ) ",
-  "controlling Office": 0,
+  "controlling Office": "NuwaraEliya ( NW )  ( 22200 ) ",
   "DS": "NW",
   "DPMG": "CP",
   "Delivery \/ Non Delivery": "Non Delivery",
@@ -28804,7 +28804,7 @@
  },
  {
   "Office Name": "Meepilimana ( 22214 ) ",
-  "controlling Office": 0,
+  "controlling Office": "NuwaraEliya ( NW )  ( 22200 ) ",
   "DS": "NW",
   "DPMG": "CP",
   "PO Code": "22214",
@@ -28813,7 +28813,7 @@
  },
  {
   "Office Name": "Pattipola (  ) ",
-  "controlling Office": 0,
+  "controlling Office": "NuwaraEliya ( NW )  ( 22200 ) ",
   "DS": "NW",
   "DPMG": "CP",
   "Delivery \/ Non Delivery": "Non Delivery",
@@ -28821,7 +28821,7 @@
  },
  {
   "Office Name": "Ruwaneliya ( 22212 ) ",
-  "controlling Office": 0,
+  "controlling Office": "NuwaraEliya ( NW )  ( 22200 ) ",
   "DS": "NW",
   "DPMG": "CP",
   "PO Code": "22212",
@@ -28830,7 +28830,7 @@
  },
  {
   "Office Name": "Seetha-Eliya (  ) ",
-  "controlling Office": 0,
+  "controlling Office": "NuwaraEliya ( NW )  ( 22200 ) ",
   "DS": "NW",
   "DPMG": "CP",
   "Delivery \/ Non Delivery": "Delivery",
@@ -28838,7 +28838,7 @@
  },
  {
   "Office Name": "Shantipura ( 22202 ) ",
-  "controlling Office": 0,
+  "controlling Office": "NuwaraEliya ( NW )  ( 22200 ) ",
   "DS": "NW",
   "DPMG": "CP",
   "PO Code": "22202",
@@ -28847,7 +28847,7 @@
  },
  {
   "Office Name": "Toppas  (  ) ",
-  "controlling Office": 0,
+  "controlling Office": "NuwaraEliya ( NW )  ( 22200 ) ",
   "DS": "NW",
   "DPMG": "CP",
   "Delivery \/ Non Delivery": "Delivery",

@@ -5681,7 +5681,7 @@
   "DS": "JA",
   "DPMG": "NP",
   "PO Code": "40405",
-  "Delivery \/ Non Delivery": "Delivery",
+  "Delivery \/ Non Delivery": "Non Delivery",
   "Te. No": "0777740585"
  },
  {
@@ -5690,7 +5690,7 @@
   "DS": "JA",
   "DPMG": "NP",
   "PO Code": "40409",
-  "Delivery \/ Non Delivery": "Delivery"
+  "Delivery \/ Non Delivery": "Non Delivery"
  },
  {
   "Office Name": "Kankasanturai  ( KN )  ( 40190 ) ",
@@ -5708,7 +5708,7 @@
   "DS": "JA",
   "DPMG": "NP",
   "PO Code": "40191",
-  "Delivery \/ Non Delivery": "Delivery",
+  "Delivery \/ Non Delivery": "Non Delivery",
   "Te. No": "0774297490"
  },
  {
@@ -5760,7 +5760,7 @@
   "DS": "JA",
   "DPMG": "NP",
   "PO Code": "40255",
-  "Delivery \/ Non Delivery": "Delivery",
+  "Delivery \/ Non Delivery": "Non Delivery",
   "Te. No": "0213213178"
  },
  {
@@ -5769,7 +5769,7 @@
   "DS": "JA",
   "DPMG": "NP",
   "PO Code": "40257",
-  "Delivery \/ Non Delivery": "Delivery",
+  "Delivery \/ Non Delivery": "Non Delivery",
   "Te. No": "0771516698"
  },
  {
@@ -5778,7 +5778,7 @@
   "DS": "JA",
   "DPMG": "NP",
   "PO Code": "40259",
-  "Delivery \/ Non Delivery": "Delivery"
+  "Delivery \/ Non Delivery": "Non Delivery"
  },
  {
   "Office Name": "Valanthalai ( 40253 ) ",
@@ -5786,7 +5786,7 @@
   "DS": "JA",
   "DPMG": "NP",
   "PO Code": "40253",
-  "Delivery \/ Non Delivery": "Delivery",
+  "Delivery \/ Non Delivery": "Non Delivery",
   "Te. No": "0778696395"
  },
  {
@@ -5795,7 +5795,7 @@
   "DS": "JA",
   "DPMG": "NP",
   "PO Code": "40251",
-  "Delivery \/ Non Delivery": "Delivery"
+  "Delivery \/ Non Delivery": "Non Delivery"
  },
  {
   "Office Name": "Karaveddi ( KVD )  ( 40520 ) ",
@@ -5903,7 +5903,7 @@
   "DS": "JA",
   "DPMG": "NP",
   "PO Code": "40277",
-  "Delivery \/ Non Delivery": "Delivery",
+  "Delivery \/ Non Delivery": "Non Delivery",
   "Te. No": "0213213177"
  },
  {
@@ -5912,7 +5912,7 @@
   "DS": "JA",
   "DPMG": "NP",
   "PO Code": "40273",
-  "Delivery \/ Non Delivery": "Delivery",
+  "Delivery \/ Non Delivery": "Non Delivery",
   "Te. No": "0213210584"
  },
  {
@@ -5921,7 +5921,7 @@
   "DS": "JA",
   "DPMG": "NP",
   "PO Code": "40278",
-  "Delivery \/ Non Delivery": "Delivery",
+  "Delivery \/ Non Delivery": "Non Delivery",
   "Te. No": "0712547859"
  },
  {
@@ -5930,7 +5930,7 @@
   "DS": "JA",
   "DPMG": "NP",
   "PO Code": "40283",
-  "Delivery \/ Non Delivery": "Delivery",
+  "Delivery \/ Non Delivery": "Non Delivery",
   "Te. No": "0213213175"
  },
  {
@@ -5939,7 +5939,7 @@
   "DS": "JA",
   "DPMG": "NP",
   "PO Code": "40285",
-  "Delivery \/ Non Delivery": "Delivery"
+  "Delivery \/ Non Delivery": "Non Delivery"
  },
  {
   "Office Name": "Suruvil ( 40287 ) ",
@@ -5947,7 +5947,7 @@
   "DS": "JA",
   "DPMG": "NP",
   "PO Code": "40287",
-  "Delivery \/ Non Delivery": "Delivery"
+  "Delivery \/ Non Delivery": "Non Delivery"
  },
  {
   "Office Name": "Kodikamam ( KDM )  ( 40700 ) ",
@@ -12247,7 +12247,7 @@
   "Te. No": "0912222182"
  },
  {
-  "Office Name": "YakgahaÃƒâ€šÃ‚Â  Junction (  ) ",
+  "Office Name": "YakgahaÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â  Junction (  ) ",
   "controlling Office": "Galle ( GL )  ( 80000 ) ",
   "DS": "GL",
   "DPMG": "SP",
@@ -12255,7 +12255,7 @@
   "Te. No": "0912222184"
  },
  {
-  "Office Name": "GalleÃƒâ€šÃ‚Â  District Secretariat ( GLS )  (  ) ",
+  "Office Name": "GalleÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â  District Secretariat ( GLS )  (  ) ",
   "controlling Office": "-",
   "DS": "GL",
   "DPMG": "SP",
@@ -14885,7 +14885,7 @@
   "Te. No": "0415624209 - 0602419277"
  },
  {
-  "Office Name": "PahalaÃƒâ€šÃ‚Â  Keeripitiya (  ) ",
+  "Office Name": "PahalaÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â  Keeripitiya (  ) ",
   "controlling Office": "Urubokka ( UB )  ( 81600 ) ",
   "DS": "MH",
   "DPMG": "SP",

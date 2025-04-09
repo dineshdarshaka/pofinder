@@ -1,0 +1,63 @@
+
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>503 Backend is unhealthy</title>
+  </head>
+  <body>
+    <h1>Error 503 Backend is unhealthy</h1>
+    <p>Backend is unhealthy</p>
+    <h3>Error 54113</h3>
+    <p>Details: cache-sin-wsss1830058-SIN 1744217056 759813166</p>
+    <hr>
+    <p>Varnish cache server</p>
+  </body>
+</html>
+
+// Add debounce function at the top of your script
+        function debounce(func, wait) {
+            let timeout;
+            return function (...args) {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func.apply(this, args), wait);
+            };
+        }
+
+        // Modify the search event listener
+        const searchBox = document.getElementById('searchBox');
+        searchBox.addEventListener('input', debounce(function() {
+            searchByType();
+        }, 300)); // 300ms delay
+
+        // Optimize the searchByType function
+        function searchByType() {
+            const searchTerm = searchBox.value.toLowerCase().trim();
+            if (searchTerm === '') {
+                populateTable();
+                return;
+            }
+
+            // Create fragment to improve performance
+            const fragment = document.createDocumentFragment();
+            const tableBody = document.getElementById('tableBody');
+            
+            const filteredData = data.Main.filter(item => 
+                item.Type.toLowerCase().includes(searchTerm)
+            );
+
+            filteredData.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${item.Type}</td>
+                    <td>${item.Name}</td>
+                    <td>${item.Address}</td>
+                    <td>${item.TelephoneNo}</td>
+                `;
+                fragment.appendChild(row);
+            });
+
+            tableBody.innerHTML = '';
+            tableBody.appendChild(fragment);
+        }

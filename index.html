@@ -305,12 +305,60 @@
         });
 
         // Debounced search
+        // Modify the debounced search event listener (around line 300)
         searchBox.addEventListener('input', (event) => {
             clearTimeout(debounceTimer);
             debounceTimer = setTimeout(() => {
-                populateTable(event.target.value.trim());
-            }, 200);
+                const searchTerm = event.target.value.trim();
+                if (searchTerm.length < 2) {
+                    if (searchTerm.length === 0) {
+                        populateTable();
+                    }
+                    return;
+                }
+                populateTable(searchTerm);
+            }, 400); // Increased delay for mobile
         });
+
+        // Optimize the populateTable function (around line 150)
+        function populateTable(filterText = '') {
+            if (filterText && filterText.length < 2) return;
+            
+            const fragment = document.createDocumentFragment();
+            const maxResults = 100; // Limit results for better performance
+            let resultCount = 0;
+
+            data.Main.some(office => {
+                const officeName = office['Office Name'] || '';
+                if (!filterText || officeName.toLowerCase().includes(filterText.toLowerCase())) {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td><span class="clickable">${officeName}</span></td>
+                        <td>${office['controlling Office'] === 0 ? 'Post Office' : office['controlling Office'] || 'N/A'}</td>
+                        <td>${office['Te. No'] || 'N/A'}</td>
+                        <td>${office['Delivery / Non Delivery'] || 'N/A'}</td>
+                        <td>${office['Number of SPO'] || 'N/A'}</td>
+                        <td>${office.DS || 'N/A'}</td>
+                        <td>${office.DPMG || 'N/A'}</td>
+                    `;
+
+                    const clickableOfficeName = row.querySelector('.clickable');
+                    clickableOfficeName.addEventListener('click', () => {
+                        if (clickedRow) clickedRow.classList.remove('highlight');
+                        row.classList.add('highlight');
+                        clickedRow = row;
+                        filterByControllingOffice(officeName);
+                    });
+
+                    fragment.appendChild(row);
+                    resultCount++;
+                    return resultCount >= maxResults;
+                }
+            });
+
+            tableBody.innerHTML = '';
+            tableBody.appendChild(fragment);
+        }
 
         // Clear button functionality
         clearButton.addEventListener('click', () => {

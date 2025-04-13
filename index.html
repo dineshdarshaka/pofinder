@@ -114,15 +114,28 @@
             border: none;
             border-radius: 5px;
         }
+    .downloadButton {
+    padding: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+}
+.downloadButton:hover {
+    background-color: #218838;
+}
     </style>
 </head>
 <body>
-
     <div id="searchContainer">
-        <input type="text" id="searchBox" placeholder="Search by Office Name, Short Code or Postal Code...">
-        <button id="clearButton">Clear</button>
-    </div>
-
+    <input type="text" id="searchBox" placeholder="Search by Office Name, Short Code or Postal Code...">
+    <button id="clearButton">Clear</button>
+    <a href="POFinder.apk" download class="downloadButton">Download Android App</a>
+</div>
     <div id="notification">
         Please send an email to <a href="mailto:ddarshaka1@gmail.com">ddarshaka1@gmail.com</a> for information correction.
         To see more details about SPO, click on the post office name.

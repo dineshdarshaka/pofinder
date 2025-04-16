@@ -150,26 +150,6 @@
             border: none;
             border-radius: 5px;
         }
-        #networkIndicator {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: #dc3545; /* Default to red */
-            display: inline-block;
-            margin-left: 5px;
-            vertical-align: middle;
-        }
-        #networkStatus {
-            font-size: 12px;
-            color: #6c757d;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 5px 0;
-        }
-        .network-text {
-            margin-right: 5px;
-        }
     </style>
 </head>
     <!-- Google tag (gtag.js) -->
@@ -192,11 +172,6 @@
     <div id="notification">
         Please send an email to <a href="mailto:ddarshaka1@gmail.com">ddarshaka1@gmail.com</a> for information correction.
         To see more details about SPO, click on the post office name.
-    </div>
-
-    <div id="networkStatus">
-        <span class="network-text">Network:</span>
-        <span id="networkIndicator" title="Network status"></span>
     </div>
     
     <div id="loadingIndicator">Loading data, please wait...</div>
@@ -231,7 +206,6 @@
         const errorMessage = document.getElementById('errorMessage');
         const loadingIndicator = document.getElementById('loadingIndicator');
         const retryButton = document.getElementById('retryButton');
-        const networkIndicator = document.getElementById('networkIndicator');
         let clickedRow = null;
         let debounceTimer;
         let retryCount = 0;
@@ -269,16 +243,9 @@
         // Check network status
         function updateNetworkStatus() {
             isOnline = navigator.onLine;
-            if (isOnline) {
-                networkIndicator.style.backgroundColor = "#28a745"; // Green for online
-                networkIndicator.title = "Connected";
-                // If we were previously showing an error, retry loading
-                if (errorMessage.style.display === 'block') {
-                    retryLoading();
-                }
-            } else {
-                networkIndicator.style.backgroundColor = "#dc3545"; // Red for offline
-                networkIndicator.title = "No connection";
+            // If we were previously showing an error and now online, retry loading
+            if (isOnline && errorMessage.style.display === 'block') {
+                retryLoading();
             }
         }
 
@@ -367,8 +334,6 @@
                             data = JSON.parse(cachedData);
                             if (data && data.Main && Array.isArray(data.Main)) {
                                 populateTable();
-                                networkIndicator.style.backgroundColor = "#ffc107"; // Yellow for cached data
-                                networkIndicator.title = "Using cached data";
                                 return;
                             }
                         } catch (e) {
@@ -519,7 +484,7 @@
         // Load data on page load
         loadData();
 
-        // Check network status every 10 seconds
+        // Check network status every 10 seconds to auto-retry if needed
         setInterval(updateNetworkStatus, 10000);
     </script>
 
